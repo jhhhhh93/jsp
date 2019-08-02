@@ -39,7 +39,7 @@
 	get : <input type="radio" id="get" name="method" value="get" checked/>
 	post : <input type="radio" id="post" name="method" value="post"/>
 		
-	<form action="/jsp/loginProcess.jsp" method="get">
+	<form action="<%=request.getContextPath() %>/jsp/loginProcess.jsp" method="get">
 		ID : <input type="text" name="userId" value="id1"/><br>
 		ID : <input type="text" name="userId" value="id2"/><br>
 		PW : <input type="password" name="password" value="pw1"><br>
