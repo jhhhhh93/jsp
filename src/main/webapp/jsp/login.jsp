@@ -5,9 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script>
+	// 문서 로딩이 완료된 다음에 실행
+	$(function(){
+		// 라디오 버튼 클릭이벤트 등록
+		$("#get, #post").click(function(){
+			// form태그의 method 방식을 클릭한 라디오 버튼의 value 값으로 변경 
+			$('form').prop("method", $(this).prop("value"));
+		})
+	})
+</script>
 </head>
 <body>
-	<h2>get login</h2>
 	<!-- 
 		서버로 요청을 보낼 때
 		1. form 태그 작성
@@ -25,14 +35,11 @@
 			- name 속성의 값이 파라미터 이름
 			- value 속성이 파라미터 값
 	 -->
-	<form action="/jsp/getLoginProcess.jsp" method="get">
-		ID : <input type="text" name="userId" value="id1"/><br>
-		ID : <input type="text" name="userId" value="id2"/><br>
-		PW : <input type="password" name="password" value="pw1"><br>
-		<input type="submit" value="로그인"/>
-	</form>
-	<h2>post login</h2>
-	<form action="/jsp/postLoginProcess.jsp" method="post">
+	<h2>get / post</h2>
+	get : <input type="radio" id="get" name="method" value="get" checked/>
+	post : <input type="radio" id="post" name="method" value="post"/>
+		
+	<form action="/jsp/loginProcess.jsp" method="get">
 		ID : <input type="text" name="userId" value="id1"/><br>
 		ID : <input type="text" name="userId" value="id2"/><br>
 		PW : <input type="password" name="password" value="pw1"><br>

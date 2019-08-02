@@ -19,6 +19,11 @@
 		 String password = request.getParameter("password");
 	-->
 	<%
+		//parameter 관련 메서드를 호출하기 전에 setCharacterEncoding 메서드를 호출해야 인코딩 설정이 적용된다.
+		request.setCharacterEncoding("utf-8");
+	%>
+	request method : <%=request.getMethod() %>
+	<%
 		 String userId = request.getParameter("userId");
 		 String password = request.getParameter("password");
 		 
