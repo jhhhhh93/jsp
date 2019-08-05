@@ -25,6 +25,7 @@ public class RedirectServlet extends HttpServlet {
 		// 화면을 생성하는 jsp에게 요청을 위임
 		
 		// dispatch 방식으로 위임
+		// context path를 적어주지 않는다.
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/redirectForm.jsp");
 		rd.forward(request, response);
 	}

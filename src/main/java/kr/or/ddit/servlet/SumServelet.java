@@ -22,7 +22,9 @@ public class SumServelet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect(request.getContextPath() + "/result.jsp");
+//		response.sendRedirect(request.getContextPath() + "/jsp/result.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/result.jsp");
+		rd.forward(request, response);
 	}
 
 }

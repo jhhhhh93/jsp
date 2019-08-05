@@ -19,9 +19,9 @@
 </head>
 <body>
 	<h2>get / post</h2>
-	get : <input type="radio" id="get" name="method" va	lue="get" checked/>
+	get : <input type="radio" id="get" name="method" value="get" checked/>
 	post : <input type="radio" id="post" name="method" value="post"/>
-	<form action="<%=request.getContextPath() %>/SumServelet" method="post">
+	<form action="<%=request.getContextPath() %>/SumServelet" method="get">
 		번호 1 : <input type="text" name="number1"><br>
 		번호 2 : <input type="text" name="number2"><br>
 		<button>결과</button>
