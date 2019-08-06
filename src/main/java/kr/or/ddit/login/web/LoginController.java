@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.or.ddit.user.repository.UserVO;
+import kr.or.ddit.user.model.UserVO;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {

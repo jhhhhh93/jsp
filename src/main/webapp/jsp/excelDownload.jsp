@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.user.repository.UserVO"%>
+<%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.user.repository.UserDao"%>
 <%@page import="kr.or.ddit.user.repository.IUserDao"%>

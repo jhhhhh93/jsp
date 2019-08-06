@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.user.repository.UserVO"%>
+<%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
         <%
         	String userId = request.getParameter("userId");
 //         	String userId = (String)request.getAttribute("userId");
-        	userId = userId == null ? "" : userId;
+        	userId = userId == null ? "id1" : userId;
         %>
         <input name="userId" type="text" id="userId" class="form-control" placeholder="userId" required autofocus value="id1">
         

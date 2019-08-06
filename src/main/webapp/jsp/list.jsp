@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="kr.or.ddit.user.repository.UserVO"%>
+<%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@page import="kr.or.ddit.user.repository.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
