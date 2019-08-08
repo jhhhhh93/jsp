@@ -13,58 +13,23 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>Jsp</title>
+<title>Jsp-Main-basicLib</title>
 
-<script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
-<!-- Bootstrap core CSS -->
-<link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom styles for this template -->
-<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-<link href="<%=request.getContextPath()%>/css/dashboard.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/blog.css" rel="stylesheet">
+<%@include file="/commonJsp/basicLib.jsp" %>
 </head>
 
 <body>
+<%@ include file="/commonJsp/header.jsp" %>
 
-	
-<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">JSP/SPRING</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Dashboard</a></li>
-				<li><a href="#">Settings</a></li>
-				<li><a href="#">Profile</a></li>
-				<li><a href="#">Help</a></li>
-				<%
-					User userVo = (User)session.getAttribute("S_USERVO");
-							String userName = "";
-							userName = userVo == null ? "" : userVo.getUserName();
-				%>
-					<li><a href="#"><%=userName %></a></li>
-			</ul>
-			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
-			</form>
-		</div>
-	</div>
-</nav><div class="container-fluid">
+<div class="container-fluid">
 		<div class="row">
-			
+		
 <div class="col-sm-3 col-md-2 sidebar">
-	<ul class="nav nav-sidebar">
-		<li class="active"><a href="<%=request.getContextPath()%>/userList">사용자리스트 <span class="sr-only">(current)</span></a></li>
-		<li class="active"><a href="#">사용자</a></li>
-	</ul>
-</div><div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<%@ include file="/commonJsp/left.jsp" %>
+</div>
+			
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				
 
 <div class="blog-header">

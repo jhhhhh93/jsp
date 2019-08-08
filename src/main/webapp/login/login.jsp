@@ -44,10 +44,10 @@
 //         	String userId = (String)request.getAttribute("userId");
         	userId = userId == null ? "id1" : userId;
         %>
-        <input name="userId" type="text" id="userId" class="form-control" placeholder="userId" required autofocus value="id1">
+        <input name="userId" type="text" id="userId" class="form-control" placeholder="userId" required autofocus value="brown">
         
         <label for="pass" class="sr-only">Password</label>
-        <input name="pass" type="password" id="pass" class="form-control" placeholder="Password" required value="pw1">
+        <input name="pass" type="password" id="pass" class="form-control" placeholder="Password" required value="brown1234">
         
         <div class="checkbox">
           <label>
