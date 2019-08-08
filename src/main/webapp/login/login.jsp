@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.user.model.UserVO"%>
+<%@page import="kr.or.ddit.user.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,10 +15,10 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<%=request.getContextPath() %>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-     <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet"> 
+     <link href="<%=request.getContextPath()%>/css/signin.css" rel="stylesheet"> 
 
   </head>
 
@@ -27,11 +27,11 @@
     <div class="container">
     
     	<%
-    		HttpSession httpSession = request.getSession();
-    		UserVO userVo = (UserVO)httpSession.getAttribute("S_USERVO");
-    		String userName = "";
-    		userName = userVo == null ? "" : userVo.getUserName();
-    	%>
+        		HttpSession httpSession = request.getSession();
+        	    		User userVo = (User)httpSession.getAttribute("S_USERVO");
+        	    		String userName = "";
+        	    		userName = userVo == null ? "" : userVo.getUserName();
+        	%>
     	
     	사용자 이름 : <%=userName %>
 

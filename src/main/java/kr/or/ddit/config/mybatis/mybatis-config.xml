@@ -6,7 +6,7 @@
 	<properties resource="kr/or/ddit/config/mybatis/db.properties"></properties>
 	
 	<typeAliases>
-		<typeAlias alias="userVo" type="kr.or.ddit.user.model.UserVO"/>
+		<typeAlias alias="user" type="kr.or.ddit.user.model.User"/>
 	</typeAliases>
 	
 	
@@ -21,6 +21,7 @@
       </dataSource>
     </environment>
   </environments>
+  
   <mappers>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
   </mappers>

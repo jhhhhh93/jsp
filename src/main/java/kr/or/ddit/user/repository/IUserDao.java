@@ -2,10 +2,10 @@ package kr.or.ddit.user.repository;
 
 import java.util.List;
 
-import kr.or.ddit.user.model.UserVO;
+import kr.or.ddit.user.model.User;
 
 public interface IUserDao {
-	List<UserVO> getUserList();
+	List<User> getUserList();
 	
-	UserVO getUser(String userId);
+	User getUser(String userId);
 }

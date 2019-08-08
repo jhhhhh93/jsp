@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.ddit.user.model.UserVO;
+import kr.or.ddit.user.model.User;
 import kr.or.ddit.user.repository.UserDao;
 
 /**
@@ -28,7 +28,7 @@ public class UserListController extends HttpServlet {
 		 */
 		
 		UserDao userDao = new UserDao();
-		List<UserVO> userList = userDao.getUserList();
+		List<User> userList = userDao.getUserList();
 		
 		request.setAttribute("userList", userList);
 		
