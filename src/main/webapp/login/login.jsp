@@ -89,11 +89,11 @@ $(document).ready(function(){
 <body>
 	<div class="container">
 		<%
-       		HttpSession httpSession = request.getSession();
-       	    		User userVo = (User)httpSession.getAttribute("S_USERVO");
-       	    		String userName = "";
-       	    		userName = userVo == null ? "" : userVo.getUserName();
-       	%>
+			HttpSession httpSession = request.getSession();
+				       	    		User userVo = (User)httpSession.getAttribute("S_USERVO");
+				       	    		String userName = "";
+				       	    		userName = userVo == null ? "" : userVo.getUserName();
+		%>
 
 		사용자 이름 :
 		<%=userName %>

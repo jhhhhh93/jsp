@@ -34,11 +34,17 @@
 			<tr>
 				<td><%=userVo.getUserName()%></td>
 			</tr>
-		<%} %>
-		<%list = dao.getUserList();%>
-		<%for(int i = 0; i < list.size(); i++){ %>
+		<%
+			}
+		%>
+		<%
+			list = dao.getUserList();
+		%>
+		<%
+			for(int i = 0; i < list.size(); i++){
+		%>
 			<tr>
-				<td><%=list.get(i).getUserName() %></td>
+				<td><%=list.get(i).getUserName()%></td>
 			</tr>
 		<%} %>
 	</table>
