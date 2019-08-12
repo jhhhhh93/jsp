@@ -24,6 +24,13 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
+	private IUserDao userDao;
+	
+	@Override
+	public void init() throws ServletException {
+		userDao = new UserDao();
+	}
+	
 	/**
 	* Method : doGet
 	* 작성자 : PC-21
@@ -39,16 +46,17 @@ public class LoginController extends HttpServlet {
 		
 		// 웹브라우저가 보낸 cookie 확인
 		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			logger.debug("cookie name : {}, cookie value : {}", 
-					cookie.getName(), cookie.getValue());
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				logger.debug("cookie name : {}, cookie value : {}", 
+						cookie.getName(), cookie.getValue());
+			}
 		}
 		
 		// 응답을 생성할때 웹브라우저에게 쿠키를 저장할 것을 지시
 		Cookie cookie = new Cookie("serverGen", "serverValue");
 		cookie.setMaxAge(60*60*24*7);	// 7일의 유효기간을 갖는 쿠키
 		response.addCookie(cookie);
-		
 		
 		request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 	}
@@ -67,12 +75,14 @@ public class LoginController extends HttpServlet {
 		// userId, password 파라미터 logger 출력
 		String userId = request.getParameter("userId");
 		String pass = request.getParameter("pass");
+		String rememberMe = request.getParameter("rememberMe");
+		
+		manageUserIdCookie(response, userId, rememberMe);
 		
 		logger.debug("userId : {}", userId);
 		logger.debug("password : {}", pass);
 		
 		// 사용자가 입력한 계정정보와 db에 있는 값이랑 비교
-		IUserDao userDao = new UserDao();
 		User user = userDao.getUser(userId);
 		
 		// db에 존재하지 않는 사용자 체크 --> 로그인 화면으로 이동
@@ -95,6 +105,18 @@ public class LoginController extends HttpServlet {
 //			request.setAttribute("userId", userId);
 			doGet(request, response);
 		}
+	}
+	private void manageUserIdCookie(HttpServletResponse response, String userId, String rememberMe) {
+		// rememberMe 파라미터가 존재할 경우 userId를 Cookie로 생성
+		Cookie cookie = new Cookie("userId", userId);
+		
+		if(rememberMe != null) {
+			cookie.setMaxAge(60*60*60*24); // 30일
+		}else {
+			cookie.setMaxAge(0); // 30일
+		}
+		
+		response.addCookie(cookie);
 	}
 
 }
