@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import kr.or.ddit.user.model.User;
 import kr.or.ddit.util.MybatisUtil;
 
-public class UserDao implements IUserDao{
+public class UserDaoImpl implements IUserDao{
 
 	/**
 	* Method : getUserList
@@ -28,7 +28,6 @@ public class UserDao implements IUserDao{
 		SqlSession sqlSession = MybatisUtil.getSession();
 		List<User> userList = sqlSession.selectList("user.getUserList");
 		sqlSession.close(); // *****중요
-
 		return userList;
 	}
 
@@ -37,8 +36,15 @@ public class UserDao implements IUserDao{
 		SqlSession sqlSession = MybatisUtil.getSession();
 		User userVo = sqlSession.selectOne("user.getUser", userId);
 		sqlSession.close();
-		
 		return userVo;
+	}
+
+	@Override
+	public List<User> getUserListOnlyHalf() {
+		SqlSession sqlSession = MybatisUtil.getSession();
+		List<User> userListOnlyHalf = sqlSession.selectList("user.getUserListOnlyHalf");
+		sqlSession.close();
+		return userListOnlyHalf;
 	}
 
 }

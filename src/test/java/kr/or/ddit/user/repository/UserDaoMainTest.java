@@ -8,7 +8,7 @@ public class UserDaoMainTest {
 
 	public static void main(String[] args) {
 		//userDao.getUserList();
-		IUserDao userDao = new UserDao();
+		IUserDao userDao = new UserDaoImpl();
 		
 		List<User> userList = userDao.getUserList();
 		

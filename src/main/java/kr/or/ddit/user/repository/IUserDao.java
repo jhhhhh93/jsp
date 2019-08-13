@@ -8,4 +8,6 @@ public interface IUserDao {
 	List<User> getUserList();
 	
 	User getUser(String userId);
+	
+	public List<User> getUserListOnlyHalf();
 }

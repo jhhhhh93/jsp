@@ -1,11 +1,11 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.ddit.user.model.User"%>
-<%@page import="kr.or.ddit.user.repository.UserDao"%>
+<%@page import="kr.or.ddit.user.repository.UserDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	UserDao dao = new UserDao(); 
+	UserDaoImpl dao = new UserDaoImpl(); 
 	List<User> list = new ArrayList<User>();
 %>
 <!DOCTYPE html>

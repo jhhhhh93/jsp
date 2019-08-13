@@ -10,30 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.user.model.User;
+import kr.or.ddit.user.repository.IUserDao;
 import kr.or.ddit.user.repository.UserDaoImpl;
 
 /**
- * Servlet implementation class UserListController
+ * Servlet implementation class UserListOnlyHalfController
  */
-@WebServlet("/userList")
-public class UserListController extends HttpServlet {
+@WebServlet("/userListOnlyHalf")
+public class UserListOnlyHalfController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * -doget
-		 * .userDao 사용자 리스트 조회
-		 * .request 객체에 사용자 리스트 정보를 저장
-		 * .userList.jsp를 통해서 화면응답을 생성하도록 위임
-		 */
+		IUserDao dao = new UserDaoImpl();
 		
-		UserDaoImpl userDao = new UserDaoImpl();
-		List<User> userList = userDao.getUserList();
+		List<User> userListOnlyHalf = dao.getUserListOnlyHalf();
 		
-		request.setAttribute("userList", userList);
+		request.setAttribute("userListOnlyHalf", userListOnlyHalf);
 		
-		request.getRequestDispatcher("/user/userList.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/user/userListOnlyHalf.jsp").forward(request, response);
 	}
+
 
 }

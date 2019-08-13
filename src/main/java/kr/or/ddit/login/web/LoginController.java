@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.user.model.User;
 import kr.or.ddit.user.repository.IUserDao;
-import kr.or.ddit.user.repository.UserDao;
+import kr.or.ddit.user.repository.UserDaoImpl;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException {
-		userDao = new UserDao();
+		userDao = new UserDaoImpl();
 	}
 	
 	/**

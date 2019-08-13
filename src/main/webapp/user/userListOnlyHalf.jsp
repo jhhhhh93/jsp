@@ -1,5 +1,3 @@
-<%@page import="kr.or.ddit.user.model.User"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -41,22 +39,7 @@
 					<th>사용자 별명</th>
 					<th>등록일시</th>
 				</tr>
-<%-- 				<%
-					List<User> userList = (List<User>)request.getAttribute("userList");
-				%>
-				<%
-					for(int i = 0; i < userList.size(); i++ ){
-				%>
-					<tr>
-						<td><%=userList.get(i).getUserId()%></td>
-						<td><%=userList.get(i).getUserName()%></td>
-						<td></td>
-						<td></td>
-					</tr>
-				<%} %>
- --%>
- 				<%-- for(User user : userList) --%>
-				<c:forEach items="${userList}" var="user">
+				<c:forEach items="${userListOnlyHalf}" var="user">
 					<tr>
 						<td>${user.userId}</td>
 						<td>${user.userName}</td>

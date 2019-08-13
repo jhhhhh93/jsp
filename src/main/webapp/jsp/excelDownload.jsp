@@ -1,6 +1,6 @@
 <%@page import="kr.or.ddit.user.model.User"%>
 <%@page import="java.util.List"%>
-<%@page import="kr.or.ddit.user.repository.UserDao"%>
+<%@page import="kr.or.ddit.user.repository.UserDaoImpl"%>
 <%@page import="kr.or.ddit.user.repository.IUserDao"%>
 <%@ page language="java" contentType="application/vnd.ms-excel; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,7 +13,7 @@
 <body>
 <%
 	response.setHeader("Content-Disposition", "attchment; filename=line.xls");
-	IUserDao userDao = new UserDao();
+	IUserDao userDao = new UserDaoImpl();
 	List<User> userList = userDao.getUserList();
 %>
 	<table>

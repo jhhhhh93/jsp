@@ -19,7 +19,7 @@ public class UserDaoTest {
 	@Test
 	public void getUserListTest() {
 		/***Given***/
-		IUserDao userDao = new UserDao();
+		IUserDao userDao = new UserDaoImpl();
 		
 		/***When***/
 		List<User> userList = userDao.getUserList();
@@ -38,7 +38,7 @@ public class UserDaoTest {
 	public void getUserTest() {
 		/***Given***/
 		String userId = "brown";
-		IUserDao userDao = new UserDao();
+		IUserDao userDao = new UserDaoImpl();
 		/***When***/
 		User userVo = userDao.getUser(userId);
 		/***Then***/
@@ -46,5 +46,19 @@ public class UserDaoTest {
 		assertEquals("brown1234", userVo.getPass());
 			
 	}
+	
+	
+	@Test
+	public void getUserListOnlyHalf() {
+		/***Given***/
+		IUserDao userDao = new UserDaoImpl();
+		
+		/***When***/
+		List<User> userList = userDao.getUserListOnlyHalf();
+		
+		/***Then***/
+		assertEquals(50, userList.size());
+	}
+	
 
 }
