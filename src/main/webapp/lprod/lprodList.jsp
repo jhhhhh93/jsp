@@ -14,9 +14,26 @@
 
 <title>Jsp - basicLib</title>
 <%@include file="/commonJsp/basicLib.jsp" %>
+<script>
+	$(function(){
+		$('.lprodTr').click(function(){
+			var lprod_gu = $('td:eq(1)', this).text();
+			
+			$('#lprod_gu').val(lprod_gu);
+			
+			console.log($('#frm').serialize());
+			
+			$('#frm').submit();
+		})
+	})
+</script>
 </head>
 
 <body>
+<form id="frm" action="${cp}/prodList" method="get">
+	<input type="hidden" id="lprod_gu" name="lprod_gu">
+</form>
+
 <%@ include file="/commonJsp/header.jsp" %>
 <div class="container-fluid">
 		<div class="row">
@@ -38,7 +55,7 @@
 					<th>제품 이름</th>
 				</tr>
 				<c:forEach items="${lprodList}" var="lprod">
-					<tr>
+					<tr class="lprodTr">
 						<td>${lprod.lprod_id}</td>
 						<td>${lprod.lprod_gu}</td>
 						<td>${lprod.lprod_nm}</td>

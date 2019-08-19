@@ -17,9 +17,29 @@
 
 <title>Jsp - basicLib</title>
 <%@include file="/commonJsp/basicLib.jsp" %>
+<script>
+	$(function(){
+		$('.userTr').click(function(){
+			var userId = $('td:eq(0)', this).text();
+			console.log($(this).children().first().text());
+			
+			// input 태그에 값 설정
+			$('#userId').val(userId);
+			
+			// form 태그 이용 전송
+			console.log("serialize : " + $('#frm').serialize());
+			
+			$('#frm').submit();
+		})
+	})
+</script>
 </head>
 
 <body>
+<form id="frm" action="${cp}/user" method="get">
+	<input type="hidden" id="userId" name="userId">
+</form>
+
 <%@ include file="/commonJsp/header.jsp" %>
 <div class="container-fluid">
 		<div class="row">
@@ -57,7 +77,7 @@
  --%>
  				<%-- for(User user : userList) --%>
 				<c:forEach items="${userList}" var="user">
-					<tr>
+					<tr class="userTr">
 						<td>${user.userId}</td>
 						<td>${user.userName}</td>
 						<td>${user.alias}</td>

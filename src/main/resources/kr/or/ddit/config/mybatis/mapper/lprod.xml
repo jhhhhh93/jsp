@@ -8,4 +8,13 @@
 		from lprod
 		order by 1
 	</select>
+	
+	<select id="getProd" resultType="LprodVO" parameterType="String">
+		select lprod_nm, lprod_gu, buyer_name, prod_id, prod_name, to_char(prod_price, 'L999,999,999') as prod_price
+		from lprod, prod, buyer
+		where lprod_gu = prod_lgu
+		and prod_buyer = buyer_id
+		and lprod_gu = #{lprod_gu}
+		order by 1
+	</select>
 </mapper>
