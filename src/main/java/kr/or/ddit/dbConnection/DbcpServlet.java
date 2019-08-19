@@ -24,7 +24,7 @@ public class DbcpServlet extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-logger.debug("DbcpServlet init()");
+		logger.debug("DbcpServlet init()");
 		
 		// servlet application(servletContextn) 얻어오기
 		// jsp : application / session / request // pageContext
