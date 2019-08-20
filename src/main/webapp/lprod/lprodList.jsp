@@ -17,7 +17,7 @@
 <script>
 	$(function(){
 		$('.lprodTr').click(function(){
-			var lprod_gu = $('td:eq(1)', this).text();
+			var lprod_gu = $(this).data("lprod_gu");
 			
 			$('#lprod_gu').val(lprod_gu);
 			
@@ -55,7 +55,7 @@
 					<th>제품 이름</th>
 				</tr>
 				<c:forEach items="${lprodList}" var="lprod">
-					<tr class="lprodTr">
+					<tr class="lprodTr" data-lprod_gu="${lprod.lprod_gu}">
 						<td>${lprod.lprod_id}</td>
 						<td>${lprod.lprod_gu}</td>
 						<td>${lprod.lprod_nm}</td>

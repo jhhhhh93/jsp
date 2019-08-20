@@ -20,8 +20,22 @@
 <script>
 	$(function(){
 		$('.userTr').click(function(){
-			var userId = $('td:eq(0)', this).text();
-			console.log($(this).children().first().text());
+			// 
+			var tdText = $('td:eq(1)', this).text();
+			console.log("tdText  : " + tdText);
+			
+			// input 태그에 저장된 값 확인
+			var inputValue = $(this).find("input").val();
+			console.log("inputValue : " + inputValue)
+			
+			// data 속성으로 값 가져오기
+			// ***** data 속섬명은 소문자로 치환된다.
+			// data-userId --> $(this).data("userid");
+			// ***** 대소문자 주의
+			var dataValue = $(this).data("userid");
+			console.log("dataValue : " + dataValue);
+			
+			return false;
 			
 			// input 태그에 값 설정
 			$('#userId').val(userId);
@@ -77,7 +91,8 @@
  --%>
  				<%-- for(User user : userList) --%>
 				<c:forEach items="${userList}" var="user">
-					<tr class="userTr">
+					<tr class="userTr" data-userId="${user.userId}">
+						<input type="hidden" value="${user.userId}"/>
 						<td>${user.userId}</td>
 						<td>${user.userName}</td>
 						<td>${user.alias}</td>
