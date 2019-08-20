@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.user.model.User;
-import kr.or.ddit.user.repository.UserDaoImpl;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserServiceImpl;
 
 /**
  * Servlet implementation class UserListController
@@ -18,6 +19,13 @@ import kr.or.ddit.user.repository.UserDaoImpl;
 @WebServlet("/userList")
 public class UserListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private IUserService userService;
+	
+	@Override
+		public void init() throws ServletException {
+			userService = new UserServiceImpl();
+		}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
@@ -27,8 +35,8 @@ public class UserListController extends HttpServlet {
 		 * .userList.jsp를 통해서 화면응답을 생성하도록 위임
 		 */
 		
-		UserDaoImpl userDao = new UserDaoImpl();
-		List<User> userList = userDao.getUserList();
+		
+		List<User> userList = userService.getUserList();
 		
 		request.setAttribute("userList", userList);
 		

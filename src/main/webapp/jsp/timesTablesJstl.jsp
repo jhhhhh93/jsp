@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 스크립틀릿, 표현식 --> jstl, el --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +15,15 @@
 </style>
 </head>
 <body>
-	<h1>times tables.jsp</h1>
+	<h1>times tables - Jstl.jsp</h1>
 	<table>
-		<% for(int i = 1; i < 10; i++){ %>
+		<c:forEach begin="1" end="9" var="i">
 			<tr>
-			<%for(int j = 2; j < 10; j++){ %>
-				<td><%=j + " * " + i + " = " + j*i%></td>
-			<%} %>
+				<c:forEach begin="2" end="9" var="j">
+					<td>${j } * ${i } = ${j*i }</td>
+				</c:forEach>
 			</tr>
-		<%} %>
+		</c:forEach>
 	</table>
 </body>
 </html>

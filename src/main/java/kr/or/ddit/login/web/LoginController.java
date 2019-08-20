@@ -1,8 +1,6 @@
 package kr.or.ddit.login.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,19 +14,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.user.model.User;
-import kr.or.ddit.user.repository.IUserDao;
-import kr.or.ddit.user.repository.UserDaoImpl;
+import kr.or.ddit.user.service.IUserService;
+import kr.or.ddit.user.service.UserServiceImpl;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	private IUserDao userDao;
+	private IUserService userService;	// IUserService
 	
 	@Override
 	public void init() throws ServletException {
-		userDao = new UserDaoImpl();
+		userService = new UserServiceImpl();
 	}
 	
 	/**
@@ -83,7 +81,7 @@ public class LoginController extends HttpServlet {
 		logger.debug("password : {}", pass);
 		
 		// 사용자가 입력한 계정정보와 db에 있는 값이랑 비교
-		User user = userDao.getUser(userId);
+		User user = userService.getUser(userId);
 		
 		// db에 존재하지 않는 사용자 체크 --> 로그인 화면으로 이동
 		if(user == null) {

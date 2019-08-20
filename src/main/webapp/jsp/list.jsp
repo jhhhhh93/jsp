@@ -1,3 +1,5 @@
+<%@page import="kr.or.ddit.user.service.UserServiceImpl"%>
+<%@page import="kr.or.ddit.user.service.IUserService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.ddit.user.model.User"%>
@@ -5,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	UserDaoImpl dao = new UserDaoImpl(); 
+	IUserService userService = new UserServiceImpl();
 	List<User> list = new ArrayList<User>();
 %>
 <!DOCTYPE html>
@@ -38,7 +40,7 @@
 			}
 		%>
 		<%
-			list = dao.getUserList();
+			list = userService.getUserList();
 		%>
 		<%
 			for(int i = 0; i < list.size(); i++){
