@@ -35,13 +35,18 @@ public class UserPagingListController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// page, pageSize 파라미터 받기
-		int pageValue = Integer.parseInt(request.getParameter("page"));
-		int pageSizeValue = Integer.parseInt(request.getParameter("pageSize"));
+		String pageValue = request.getParameter("page");
+		String pageSizeValue = request.getParameter("pageSize");
 		
-		Page page = new Page(pageValue, pageSizeValue);
+		int page = pageValue == null ? 1 : Integer.parseInt(pageValue);
+		int pageSize = pageSizeValue == null ? 10 : Integer.parseInt(pageSizeValue);
 		
-		List<User> userList = (List<User>) userService.getUserPagingList(page).get("userList");
-		int paginationSize = (int) userService.getUserPagingList(page).get("paginationSize");
+		Page p = new Page(page, pageSize);
+		
+		request.setAttribute("pageVo", p);
+		
+		List<User> userList = (List<User>) userService.getUserPagingList(p).get("userList");
+		int paginationSize = (int) userService.getUserPagingList(p).get("paginationSize");
 		
 		request.setAttribute("userList", userList);
 		request.setAttribute("paginationSize", paginationSize);

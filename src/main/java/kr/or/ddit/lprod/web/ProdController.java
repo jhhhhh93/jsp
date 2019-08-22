@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import kr.or.ddit.lprod.model.LprodVO;
 import kr.or.ddit.lprod.repository.ILprodDao;
 import kr.or.ddit.lprod.repository.LprodDaoImpl;
+import kr.or.ddit.lprod.service.ILprodService;
+import kr.or.ddit.lprod.service.LprodServiceImpl;
 
 /**
  * Servlet implementation class ProdController
@@ -25,11 +27,11 @@ public class ProdController extends HttpServlet {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProdController.class);
 	
-	private ILprodDao lprodDao;
+	private ILprodService lprodService;
 	
 	@Override
 	public void init() throws ServletException {
-		lprodDao = new LprodDaoImpl();
+		lprodService = LprodServiceImpl.getInstance();
 	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +39,7 @@ public class ProdController extends HttpServlet {
 		
 		logger.debug("lprod_gu : {}", lprod_gu );
 		
-		List<LprodVO> prodList = lprodDao.getProd(lprod_gu);
+		List<LprodVO> prodList = lprodService.getProd(lprod_gu);
 		
 		logger.debug("list.size() : {}", prodList.size());
 		

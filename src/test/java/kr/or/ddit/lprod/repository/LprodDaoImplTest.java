@@ -3,10 +3,15 @@ package kr.or.ddit.lprod.repository;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
+import kr.or.ddit.common.model.Page;
 import kr.or.ddit.lprod.model.LprodVO;
+import kr.or.ddit.lprod.service.ILprodService;
+import kr.or.ddit.lprod.service.LprodServiceImpl;
+import kr.or.ddit.user.model.User;
 
 public class LprodDaoImplTest {
 	
@@ -19,10 +24,10 @@ public class LprodDaoImplTest {
 	@Test
 	public void getAllTest(){
 		/***Given***/
-		ILprodDao lprodDao = LprodDaoImpl.getInstance();
+		ILprodService lprodService = LprodServiceImpl.getInstance();
 		
 		/***When***/
-		List<LprodVO> lprodList = lprodDao.getAll();
+		List<LprodVO> lprodList = lprodService.getAll();
 		
 		/***Then***/
 		assertEquals(12, lprodList.size());
@@ -32,13 +37,32 @@ public class LprodDaoImplTest {
 	public void getProdTest() {
 		/***Given***/
 		String lprod_gu = "P101";
-		ILprodDao lprodDao = LprodDaoImpl.getInstance();
+		ILprodService lprodService = LprodServiceImpl.getInstance();
 		
 		/***When***/
-		List<LprodVO> lprodList = lprodDao.getProd(lprod_gu);
+		List<LprodVO> lprodList = lprodService.getProd(lprod_gu);
 		
 		/***Then***/
 		assertEquals(6, lprodList.size());
+	}
+	
+	@Test
+	public void getLprodPagingListTest() {
+		/*** Given ***/
+		ILprodService lprodService = LprodServiceImpl.getInstance();
+		Page page = new Page();
+		page.setPage(3);
+		page.setPageSize(5);
+
+		/*** When ***/
+		Map<String, Object> map = lprodService.getLprodPagingList(page);
+		List<LprodVO> prodPagingList = (List<LprodVO>) map.get("prodPagingList");
+		int paginationSize = (int) map.get("paginationSize");
+		
+		/*** Then ***/
+		assertEquals(5, prodPagingList.size());
+		assertEquals(15, paginationSize);
+		
 	}
 	
 }

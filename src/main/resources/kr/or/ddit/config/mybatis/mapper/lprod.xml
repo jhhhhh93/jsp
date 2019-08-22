@@ -17,4 +17,20 @@
 		and lprod_gu = #{lprod_gu}
 		order by 1
 	</select>
+	
+	<select id="getLprodPagingList" resultType="LprodVO" parameterType="page">
+		select a.*
+		from
+		        (select rownum rn, a.*
+		        from
+		                (select a.*
+		                from lprod a
+		                order by lprod_id) a) a
+		where rn between #{pageSize}*(#{page}-1) + 1 and #{page}*#{pageSize}
+	</select>
+	
+	<select id="getProdTotalCnt" resultType="Integer">
+		select count(*)
+		from lprod
+	</select>
 </mapper>
