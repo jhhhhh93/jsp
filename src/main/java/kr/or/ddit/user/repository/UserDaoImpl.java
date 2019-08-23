@@ -43,4 +43,14 @@ public class UserDaoImpl implements IUserDao{
 		return sqlSession.selectOne("user.getUserTotalCnt");
 	}
 
+	@Override
+	public int insertUser(SqlSession sqlSession, User user) {
+		return sqlSession.insert("user.insertUser", user);
+	}
+
+	@Override
+	public int deleteUser(SqlSession sqlSession, String userId) {
+		return sqlSession.delete("user.deleteUser", userId);
+	}
+
 }

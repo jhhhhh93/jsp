@@ -36,4 +36,14 @@
 		select count(*)
 		from users
 	</select>
+	
+	<insert id="insertUser" parameterType="user">
+		insert into users (userId, userNm, pass, reg_dt, alias, addr1, addr2, zipcode)
+		values(#{userId}, #{userNM}, #{pass}, #{reg_dt}, #{alias}, #{addr1}, #{addr2}, #{zipcode})
+	</insert>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete users 
+		where userid = #{userId}
+	</delete>
 </mapper>

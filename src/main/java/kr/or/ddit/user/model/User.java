@@ -27,6 +27,33 @@ public class User {
 	public User(String userNM) {
 		this.userNM = userNM;
 	}
+	
+	public User(String userNM, String userId, String pass, Date reg_dt, String alias, String addr1, String addr2,
+			String zipcode) {
+		this.userNM = userNM;
+		this.userId = userId;
+		this.pass = pass;
+		this.reg_dt = reg_dt;
+		this.alias = alias;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcode = zipcode;
+	}
+
+	public User(String userNM, String userId, String pass, Date reg_dt, String alias, String addr1, String addr2,
+			String zipcode, String filename, String realfilename) {
+		super();
+		this.userNM = userNM;
+		this.userId = userId;
+		this.pass = pass;
+		this.reg_dt = reg_dt;
+		this.alias = alias;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcode = zipcode;
+		this.filename = filename;
+		this.realfilename = realfilename;
+	}
 
 	public String getUserName() {
 		return userNM;
@@ -122,11 +149,14 @@ public class User {
 		this.realfilename = realfilename;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "UserVO [userName=" + userNM + ", userId=" + userId + ", pass=" + pass + "]";
+		return "User [userNM=" + userNM + ", userId=" + userId + ", pass=" + pass + ", reg_dt=" + reg_dt + ", alias="
+				+ alias + ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", filename=" + filename
+				+ ", realfilename=" + realfilename + "]";
 	}
-	
+
 	public boolean checkLoginValidate(String userId, String pass) {
 		if(userId.equals(this.userId) && pass.equals(this.pass)) {
 			return true;

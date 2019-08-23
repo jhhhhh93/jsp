@@ -60,8 +60,8 @@ public class LprodDaoImplTest {
 		int paginationSize = (int) map.get("paginationSize");
 		
 		/*** Then ***/
-		assertEquals(5, prodPagingList.size());
-		assertEquals(15, paginationSize);
+		assertEquals(2, prodPagingList.size());
+		assertEquals(3, paginationSize);
 		
 	}
 	

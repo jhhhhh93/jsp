@@ -2,21 +2,32 @@ package kr.or.ddit.user.service;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.common.model.Page;
 import kr.or.ddit.user.model.User;
 
 public class UserServiceImplTest {
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImplTest.class);
+	
 	private IUserService userService;
+	private String userId = "brownTest";
 	
 	@Before
 	public void setup() {
+		logger.debug("UserServiceTest Before()");
 		userService = new UserServiceImpl();
+		
+		int deleteCnt = userService.deleteUser(userId);
+		
 	}
 	
 	/**
@@ -110,6 +121,27 @@ public class UserServiceImplTest {
 
 		/***Then***/
 		assertEquals(11, paginationSize);
+	}
+	
+	@Test
+	public void insertUserTest() throws ParseException {
+		/***Given***/
+		User user = new User();
+		
+		user.setUserId(userId);
+		user.setUserName("브라운테스트");
+		user.setPass("brownTest1234");
+		user.setReg_dt(new SimpleDateFormat("yyyy-MM-dd").parse("2019-08-08"));
+		user.setAlias("곰테스트");
+		user.setAddr1("대전광역시 중구 중앙로 76");
+		user.setAddr2("영민빌딩 2층 DDIT");
+		user.setZipcode("34940");
+		
+		/***When***/
+		int insertCnt = userService.insertUser(user);
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
 	}
    
 }
