@@ -1,4 +1,4 @@
-package kr.or.ddit.excrypt.aria;
+package kr.or.ddit.encrypt.aria;
 
 import static org.junit.Assert.*;
 

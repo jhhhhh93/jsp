@@ -1,4 +1,4 @@
-package kr.or.ddit.excrypt.sha256;
+package kr.or.ddit.encrypt.sha256;
 
 import static org.junit.Assert.*;
 
