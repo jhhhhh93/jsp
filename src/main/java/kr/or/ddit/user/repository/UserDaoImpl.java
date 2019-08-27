@@ -53,4 +53,9 @@ public class UserDaoImpl implements IUserDao{
 		return sqlSession.delete("user.deleteUser", userId);
 	}
 
+	@Override
+	public int updateUser(SqlSession sqlSession, User user) {
+		return sqlSession.update("user.updateUser", user);
+	}
+
 }

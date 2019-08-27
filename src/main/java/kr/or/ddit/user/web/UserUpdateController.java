@@ -1,13 +1,10 @@
 package kr.or.ddit.user.web;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -26,14 +23,14 @@ import kr.or.ddit.user.service.UserServiceImpl;
 import kr.or.ddit.util.FileuploadUtil;
 
 /**
- * Servlet implementation class UserFormController
+ * Servlet implementation class UserUpdateController
  */
-@WebServlet("/userForm")
+@WebServlet("/userUpdate")
 @MultipartConfig(maxFileSize = 1024*1024*5, maxRequestSize = 1024*1024*5*5)
-public class UserFormController extends HttpServlet {
+public class UserUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserFormController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserUpdateController.class);
 	
 	private IUserService userService;
 	
@@ -41,21 +38,22 @@ public class UserFormController extends HttpServlet {
 	public void init() throws ServletException {
 		userService = new UserServiceImpl();
 	}
-	
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/user/userForm.jsp").forward(request, response);
+		String userId = request.getParameter("userId");
+		
+		logger.debug("userId : {}", userId);
+		
+		User user = userService.getUser(userId);
+		
+		logger.debug("userfilename : {}", user.getFilename());
+		logger.debug("userrealfilename : {}", user.getRealfilename());
+		
+		request.setAttribute("user", user);
+		
+		request.getRequestDispatcher("/user/userUpdate.jsp").forward(request, response);
 	}
 
-	/**
-	* Method : doPost
-	* 작성자 : PC-21
-	* 변경이력 :
-	* @param request
-	* @param response
-	* @throws ServletException
-	* @throws IOException
-	* Method 설명 : 사용자 등록 요청
-	*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
@@ -69,6 +67,8 @@ public class UserFormController extends HttpServlet {
 		String pass = request.getParameter("pass");
 		Date reg_dt_date = null;
 		
+		logger.debug("userId : {}, userNM : {}, Alias : {}, reg_dt : {}, addr1 : {}, addr2 : {}, zipcode : {}, pass : {}",
+				userId, userNm, userAlias, reg_dt, addr1, addr2, zipcode, pass );
 		Part picture = request.getPart("picture");
 		
 		// 사용자가 파일을 업로드 한 경우
@@ -81,6 +81,11 @@ public class UserFormController extends HttpServlet {
 			path = FileuploadUtil.getPath() + realfilename + ext;
 			picture.write(path);
 		}
+		// 업로드 하지 않은 경우
+		else {
+			filename = request.getParameter("filename");
+			path = request.getParameter("realfilename");
+		}
 		
 		try {
 			reg_dt_date = new SimpleDateFormat("yyyy-MM-dd").parse(reg_dt);
@@ -88,24 +93,17 @@ public class UserFormController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Pattern p = Pattern.compile("^([a-zA-Z\\d\\.@]){5,20}$");
-		Matcher m = p.matcher(userId);
-		if(!m.find()) {
-			request.setAttribute("userIdMsg", "사용자 아이디가 잘못 되었습니다.");
-			doGet(request, response);
-		}else {
-			User user = new User(userNm, userId, pass, reg_dt_date, userAlias, addr1, addr2, zipcode, filename, path);
-			int insertCnt = 0; 
+		User user = new User(userNm, userId, pass, reg_dt_date, userAlias, addr1, addr2, zipcode, filename, path);
+		int updateCnt = 0; 
+		
+		try {
+			updateCnt = userService.updateUser(user);
 			
-			try {
-				insertCnt = userService.insertUser(user);
-				
-				if(insertCnt == 1) {
-					response.sendRedirect(request.getContextPath() + "/user?userId=" + userId);
-				}
-			} catch (Exception e) {
-				doGet(request, response);
+			if(updateCnt == 1) {
+				response.sendRedirect(request.getContextPath() + "/user?userId=" + userId);
 			}
+		} catch (Exception e) {
+			doGet(request, response);
 		}
 	}
 

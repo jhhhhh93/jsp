@@ -6,6 +6,8 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
+
 public class User {
 	private static final Logger logger = LoggerFactory.getLogger(User.class);
 	
@@ -19,6 +21,7 @@ public class User {
 	private String zipcode     ;
 	private String filename    ;
 	private String realfilename;
+	private String realfilename2;
 	
 	
 	public User() {
@@ -148,8 +151,15 @@ public class User {
 	public void setRealfilename(String realfilename) {
 		this.realfilename = realfilename;
 	}
-
 	
+	public String getRealfilename2() {
+		return realfilename2;
+	}
+
+	public void setRealfilename2(String realfilename2) {
+		this.realfilename2 = realfilename2;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userNM=" + userNM + ", userId=" + userId + ", pass=" + pass + ", reg_dt=" + reg_dt + ", alias="
@@ -158,10 +168,12 @@ public class User {
 	}
 
 	public boolean checkLoginValidate(String userId, String pass) {
-		if(userId.equals(this.userId) && pass.equals(this.pass)) {
+		// 암호화 문장끼리 비교
+		if(userId.equals(this.userId) && KISA_SHA256.encrypt(pass).equals(this.pass)) {
 			return true;
 		}
 		return false;
 	}
+	
 	
 }
