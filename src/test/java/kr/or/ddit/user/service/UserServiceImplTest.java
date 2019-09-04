@@ -27,7 +27,6 @@ public class UserServiceImplTest {
 		userService = new UserServiceImpl();
 		
 		int deleteCnt = userService.deleteUser(userId);
-		
 	}
 	
 	/**
