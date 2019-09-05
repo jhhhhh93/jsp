@@ -14,10 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.User;
 
-/**
- * Servlet Filter implementation class LoginCheckFilter
- */
-@WebFilter("/*")
+//@WebFilter("/*")
 public class LoginCheckFilter implements Filter {
 
 	public void destroy() {
