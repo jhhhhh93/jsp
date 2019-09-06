@@ -32,14 +32,14 @@ public class LoginCheckFilter implements Filter {
 		
 		String uri = httpRequest.getRequestURI();
 		// 로그인을 체크하지 말아야 하는 url을 확인
-		if(uri.startsWith("/login") || uri.endsWith(".css") || uri.endsWith(".js")) {
+		if(uri.startsWith(httpRequest.getContextPath() + "/login") || uri.endsWith(".css") || uri.endsWith(".js")) {
 			chain.doFilter(httpRequest, response);
 		}
 		// 로그인하지 않은 상황
 		else if(S_USERVO == null) {
 			// 로그인 화면으로 이동
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
-			httpResponse.sendRedirect("/login");
+			httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
 		}
 		// 로그인한 상황
 		else {
