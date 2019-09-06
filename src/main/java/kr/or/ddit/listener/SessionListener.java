@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSessionBindingEvent;
 
 import org.slf4j.LoggerFactory;
 
-import com.sun.media.jfxmedia.logging.Logger;
-
 import kr.or.ddit.user.model.User;
+
+
 
 public class SessionListener implements HttpSessionAttributeListener{
 	
